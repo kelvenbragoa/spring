@@ -21,7 +21,6 @@ public class UserDTO {
     @NotBlank(message = "O telefone e obrigatorio")
     @NotNull(message = "O telefone e obrigatorio")
     private String mobile;
-    @NotBlank(message = "O nivel e obrigatorio")
     @NotNull(message = "O nivel e obrigatorio")
     private Integer role_id;
     @NotBlank(message = "O password e obrigatorio")

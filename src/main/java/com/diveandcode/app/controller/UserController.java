@@ -2,10 +2,16 @@ package com.diveandcode.app.controller;
 
 import com.diveandcode.app.dto.UserDTO;
 import com.diveandcode.app.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value="/api/v1/")
@@ -26,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public UserDTO saveUser(@RequestBody UserDTO userDTO){
+    public UserDTO saveUser(@Valid @RequestBody UserDTO userDTO){
         return userService.saveUser(userDTO);
     }
 
@@ -38,6 +44,18 @@ public class UserController {
     @DeleteMapping("/user")
     public boolean deleteUser(@RequestBody UserDTO userDTO){
         return userService.deleteUser(userDTO);
+    }
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 
 }

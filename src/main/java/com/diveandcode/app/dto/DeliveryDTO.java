@@ -18,14 +18,12 @@ public class DeliveryDTO {
     private Integer delivered_by_user_id;
     private Integer returned_by_user_id;
     private Date returned_date;
-    @NotBlank(message = "O funcionario e obrigatorio")
     @NotNull(message = "O funcionario e obrigatorio")
     private Integer employee_id;
-    @NotBlank(message = "A empresa e obrigatorio")
     @NotNull(message = "A empresa e obrigatorio")
     private Integer company_id;
-    @NotBlank(message = "O dispositivo e obrigatorio")
     @NotNull(message = "O dispositivo e obrigatorio")
     private Integer device_id;
+    @NotNull(message = "A operacao e obrigatorio")
     private Integer operation_id;
 }

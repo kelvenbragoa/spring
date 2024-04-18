@@ -20,7 +20,6 @@ public class EmployeeDTO {
     @NotBlank(message = "O telefone e obrigatorio")
     @NotNull(message = "O telefone e obrigatorio")
     private String mobile;
-    @NotBlank(message = "O empresa e obrigatorio")
     @NotNull(message = "O empresa e obrigatorio")
     private Integer company_id;
 }

@@ -27,13 +27,10 @@ public class DeviceDTO {
     @NotBlank(message = "A imagem e obrigatorio")
     @NotNull(message = "A imagem e obrigatorio")
     private String image;
-    @NotBlank(message = "O tipo de dispositivo e obrigatorio")
     @NotNull(message = "O tipo de dispositivo e obrigatorio")
     private Integer type_device_id;
-    @NotBlank(message = "O status e obrigatorio")
     @NotNull(message = "O status e obrigatorio")
     private Integer device_status_id;
-    @NotBlank(message = "A disponibilidade e obrigatorio")
     @NotNull(message = "A disponibilidade e obrigatorio")
     private Integer device_availability_id;
 }
