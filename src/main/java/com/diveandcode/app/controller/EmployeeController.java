@@ -1,11 +1,17 @@
 package com.diveandcode.app.controller;
 
-import com.diveandcode.app.dto.DeviceDTO;
-import com.diveandcode.app.service.DeviceService;
+import com.diveandcode.app.dto.EmployeeDTO;
+import com.diveandcode.app.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value="/api/v1/")
@@ -13,31 +19,44 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-    private DeviceService deviceService;
+    private EmployeeService employeeService;
 
-    @GetMapping("/devices")
-    public List<DeviceDTO> getDevice(){
-        return deviceService.getAllDevices();
+    @GetMapping("/employee")
+    public List<EmployeeDTO> getEmployee(){
+        return employeeService.getAllEmployee();
     }
 
-    @GetMapping("/devices/{id}")
-    public DeviceDTO getOneDevice(@PathVariable("id") int id){
-        return deviceService.getOneDevices(id);
+    @GetMapping("/employee/{id}")
+    public EmployeeDTO getOneEmployee(@PathVariable("id") int id){
+        return employeeService.getOneEmployee(id);
     }
 
-    @PostMapping("/devices")
-    public DeviceDTO saveDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.saveDevice(studentDTO);
+    @PostMapping("/employee")
+    public EmployeeDTO saveEmployee(@Valid @RequestBody EmployeeDTO employeeDTO){
+        return employeeService.saveEmployee(employeeDTO);
     }
 
-    @PutMapping("/devices")
-    public DeviceDTO updateDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.updateDevice(studentDTO);
+    @PutMapping("/employee")
+    public EmployeeDTO updateEmployee(@RequestBody EmployeeDTO employeeDTO){
+        return employeeService.updateEmployee(employeeDTO);
     }
 
-    @DeleteMapping("/devices")
-    public boolean deleteDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.deleteDevice(studentDTO);
+    @DeleteMapping("/employee")
+    public boolean deleteEmployee(@RequestBody EmployeeDTO employeeDTO){
+        return employeeService.deleteEmployee(employeeDTO);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 
 }

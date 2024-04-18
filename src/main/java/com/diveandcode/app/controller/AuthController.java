@@ -12,32 +12,4 @@ import java.util.List;
 @CrossOrigin
 public class AuthController {
 
-    @Autowired
-    private DeviceService deviceService;
-
-    @GetMapping("/devices")
-    public List<DeviceDTO> getDevice(){
-        return deviceService.getAllDevices();
-    }
-
-    @GetMapping("/devices/{id}")
-    public DeviceDTO getOneDevice(@PathVariable("id") int id){
-        return deviceService.getOneDevices(id);
-    }
-
-    @PostMapping("/devices")
-    public DeviceDTO saveDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.saveDevice(studentDTO);
-    }
-
-    @PutMapping("/devices")
-    public DeviceDTO updateDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.updateDevice(studentDTO);
-    }
-
-    @DeleteMapping("/devices")
-    public boolean deleteDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.deleteDevice(studentDTO);
-    }
-
 }

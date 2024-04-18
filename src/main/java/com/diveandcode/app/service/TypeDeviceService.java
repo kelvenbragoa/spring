@@ -1,8 +1,9 @@
 package com.diveandcode.app.service;
 
-import com.diveandcode.app.dto.DeviceDTO;
+import com.diveandcode.app.dto.TypeDeviceDTO;
 import com.diveandcode.app.entity.Device;
-import com.diveandcode.app.repository.DeviceRepository;
+import com.diveandcode.app.entity.TypeDevice;
+import com.diveandcode.app.repository.TypeDeviceRepository;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -17,33 +18,33 @@ import java.util.Optional;
 public class TypeDeviceService {
 
     @Autowired
-    private DeviceRepository deviceRepository;
+    private TypeDeviceRepository typedeviceRepository;
 
     @Autowired
     private ModelMapper modelMapper;
 
-    public DeviceDTO saveDevice(DeviceDTO deviceDTO){
-        deviceRepository.save(modelMapper.map(deviceDTO, Device.class));
-        return deviceDTO;
+    public TypeDeviceDTO saveDevice(TypeDeviceDTO typedeviceDTO){
+        typedeviceRepository.save(modelMapper.map(typedeviceDTO, TypeDevice.class));
+        return typedeviceDTO;
     }
 
-    public List<DeviceDTO> getAllDevices(){
-        List<Device> deviceList = deviceRepository.findAll();
-        return modelMapper.map(deviceList, new TypeToken<List<DeviceDTO>>(){}.getType());
+    public List<TypeDeviceDTO> getAllTypeDevice(){
+        List<TypeDevice> deviceList = typedeviceRepository.findAll();
+        return modelMapper.map(deviceList, new TypeToken<List<TypeDeviceDTO>>(){}.getType());
     }
 
-    public DeviceDTO getOneDevices(int id){
-        Optional<Device> device = deviceRepository.findById(id);
-        return modelMapper.map(device, new TypeToken<DeviceDTO>(){}.getType());
+    public TypeDeviceDTO getOneTypeDevice(int id){
+        Optional<TypeDevice> device = typedeviceRepository.findById(id);
+        return modelMapper.map(device, new TypeToken<TypeDeviceDTO>(){}.getType());
     }
 
-    public DeviceDTO updateDevice(DeviceDTO deviceDTO){
-        deviceRepository.save(modelMapper.map(deviceDTO,Device.class));
-        return deviceDTO;
+    public TypeDeviceDTO updateTypeDevice(TypeDeviceDTO typedeviceDTO){
+        typedeviceRepository.save(modelMapper.map(typedeviceDTO,TypeDevice.class));
+        return typedeviceDTO;
     }
 
-    public boolean deleteDevice(DeviceDTO deviceDTO){
-        deviceRepository.delete(modelMapper.map(deviceDTO, Device.class));
+    public boolean deleteTypeDevice(TypeDeviceDTO typedeviceDTO){
+        typedeviceRepository.delete(modelMapper.map(typedeviceDTO, TypeDevice.class));
         return true;
     }
 }

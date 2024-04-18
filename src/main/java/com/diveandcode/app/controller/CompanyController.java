@@ -15,27 +15,27 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-    @GetMapping("/companys")
+    @GetMapping("/company")
     public List<CompanyDTO> getCompany(){
         return companyService.getAllCompany();
     }
 
-    @GetMapping("/companys/{id}")
+    @GetMapping("/company/{id}")
     public CompanyDTO getOneCompany(@PathVariable("id") int id){
         return companyService.getOneCompany(id);
     }
 
-    @PostMapping("/companys")
+    @PostMapping("/company")
     public CompanyDTO saveCompany(@RequestBody CompanyDTO companyDTO){
         return companyService.saveCompany(companyDTO);
     }
 
-    @PutMapping("/companys")
+    @PutMapping("/company")
     public CompanyDTO updateCompany(@RequestBody CompanyDTO companyDTO){
         return companyService.updateCompany(companyDTO);
     }
 
-    @DeleteMapping("/companys")
+    @DeleteMapping("/company")
     public boolean deleteCompany(@RequestBody CompanyDTO companyDTO){
         return companyService.deleteCompany(companyDTO);
     }

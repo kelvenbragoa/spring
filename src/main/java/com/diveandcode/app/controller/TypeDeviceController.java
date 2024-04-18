@@ -1,7 +1,7 @@
 package com.diveandcode.app.controller;
 
-import com.diveandcode.app.dto.DeviceDTO;
-import com.diveandcode.app.service.DeviceService;
+import com.diveandcode.app.dto.TypeDeviceDTO;
+import com.diveandcode.app.service.TypeDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,31 +13,31 @@ import java.util.List;
 public class TypeDeviceController {
 
     @Autowired
-    private DeviceService deviceService;
+    private TypeDeviceService typedeviceService;
 
-    @GetMapping("/devices")
-    public List<DeviceDTO> getDevice(){
-        return deviceService.getAllDevices();
+    @GetMapping("/typedevice")
+    public List<TypeDeviceDTO> getTypeDevice(){
+        return typedeviceService.getAllTypeDevice();
     }
 
-    @GetMapping("/devices/{id}")
-    public DeviceDTO getOneDevice(@PathVariable("id") int id){
-        return deviceService.getOneDevices(id);
+    @GetMapping("/typedevice/{id}")
+    public TypeDeviceDTO getOneTypeDevice(@PathVariable("id") int id){
+        return typedeviceService.getOneTypeDevice(id);
     }
 
-    @PostMapping("/devices")
-    public DeviceDTO saveDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.saveDevice(studentDTO);
+    @PostMapping("/typedevice")
+    public TypeDeviceDTO saveTypeDevice(@RequestBody TypeDeviceDTO typedeviceDTO){
+        return typedeviceService.saveDevice(typedeviceDTO);
     }
 
-    @PutMapping("/devices")
-    public DeviceDTO updateDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.updateDevice(studentDTO);
+    @PutMapping("/typedevice")
+    public TypeDeviceDTO updateTypeDevice(@RequestBody TypeDeviceDTO typedeviceDTO){
+        return typedeviceService.updateTypeDevice(typedeviceDTO);
     }
 
-    @DeleteMapping("/devices")
-    public boolean deleteDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.deleteDevice(studentDTO);
+    @DeleteMapping("/typedevice")
+    public boolean deleteTypeDevice(@RequestBody TypeDeviceDTO typedeviceDTO){
+        return typedeviceService.deleteTypeDevice(typedeviceDTO);
     }
 
 }

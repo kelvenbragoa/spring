@@ -15,29 +15,29 @@ public class DeviceController {
     @Autowired
     private DeviceService deviceService;
 
-    @GetMapping("/devices")
+    @GetMapping("/device")
     public List<DeviceDTO> getDevice(){
         return deviceService.getAllDevices();
     }
 
-    @GetMapping("/devices/{id}")
+    @GetMapping("/device/{id}")
     public DeviceDTO getOneDevice(@PathVariable("id") int id){
         return deviceService.getOneDevices(id);
     }
 
-    @PostMapping("/devices")
-    public DeviceDTO saveDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.saveDevice(studentDTO);
+    @PostMapping("/device")
+    public DeviceDTO saveDevice(@RequestBody DeviceDTO deviceDTO){
+        return deviceService.saveDevice(deviceDTO);
     }
 
-    @PutMapping("/devices")
-    public DeviceDTO updateDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.updateDevice(studentDTO);
+    @PutMapping("/device")
+    public DeviceDTO updateDevice(@RequestBody DeviceDTO deviceDTO){
+        return deviceService.updateDevice(deviceDTO);
     }
 
-    @DeleteMapping("/devices")
-    public boolean deleteDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.deleteDevice(studentDTO);
+    @DeleteMapping("/device")
+    public boolean deleteDevice(@RequestBody DeviceDTO deviceDTO){
+        return deviceService.deleteDevice(deviceDTO);
     }
 
 }

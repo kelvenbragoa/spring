@@ -1,8 +1,8 @@
 package com.diveandcode.app.service;
 
-import com.diveandcode.app.dto.DeviceDTO;
-import com.diveandcode.app.entity.Device;
-import com.diveandcode.app.repository.DeviceRepository;
+import com.diveandcode.app.dto.EmployeeDTO;
+import com.diveandcode.app.entity.Employee;
+import com.diveandcode.app.repository.EmployeeRepository;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -17,33 +17,33 @@ import java.util.Optional;
 public class EmployeeService {
 
     @Autowired
-    private DeviceRepository deviceRepository;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
     private ModelMapper modelMapper;
 
-    public DeviceDTO saveDevice(DeviceDTO deviceDTO){
-        deviceRepository.save(modelMapper.map(deviceDTO, Device.class));
-        return deviceDTO;
+    public EmployeeDTO saveEmployee(EmployeeDTO employeeDTO){
+        employeeRepository.save(modelMapper.map(employeeDTO, Employee.class));
+        return employeeDTO;
     }
 
-    public List<DeviceDTO> getAllDevices(){
-        List<Device> deviceList = deviceRepository.findAll();
-        return modelMapper.map(deviceList, new TypeToken<List<DeviceDTO>>(){}.getType());
+    public List<EmployeeDTO> getAllEmployee(){
+        List<Employee> deviceList = employeeRepository.findAll();
+        return modelMapper.map(deviceList, new TypeToken<List<EmployeeDTO>>(){}.getType());
     }
 
-    public DeviceDTO getOneDevices(int id){
-        Optional<Device> device = deviceRepository.findById(id);
-        return modelMapper.map(device, new TypeToken<DeviceDTO>(){}.getType());
+    public EmployeeDTO getOneEmployee(int id){
+        Optional<Employee> device = employeeRepository.findById(id);
+        return modelMapper.map(device, new TypeToken<EmployeeDTO>(){}.getType());
     }
 
-    public DeviceDTO updateDevice(DeviceDTO deviceDTO){
-        deviceRepository.save(modelMapper.map(deviceDTO,Device.class));
-        return deviceDTO;
+    public EmployeeDTO updateEmployee(EmployeeDTO employeeDTO){
+        employeeRepository.save(modelMapper.map(employeeDTO,Employee.class));
+        return employeeDTO;
     }
 
-    public boolean deleteDevice(DeviceDTO deviceDTO){
-        deviceRepository.delete(modelMapper.map(deviceDTO, Device.class));
+    public boolean deleteEmployee(EmployeeDTO employeeDTO){
+        employeeRepository.delete(modelMapper.map(employeeDTO, Employee.class));
         return true;
     }
 }

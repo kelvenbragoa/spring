@@ -1,7 +1,7 @@
 package com.diveandcode.app.controller;
 
-import com.diveandcode.app.dto.DeviceDTO;
-import com.diveandcode.app.service.DeviceService;
+import com.diveandcode.app.dto.UserDTO;
+import com.diveandcode.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,31 +13,31 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private DeviceService deviceService;
+    private UserService userService;
 
-    @GetMapping("/devices")
-    public List<DeviceDTO> getDevice(){
-        return deviceService.getAllDevices();
+    @GetMapping("/user")
+    public List<UserDTO> getUser(){
+        return userService.getAllUser();
     }
 
-    @GetMapping("/devices/{id}")
-    public DeviceDTO getOneDevice(@PathVariable("id") int id){
-        return deviceService.getOneDevices(id);
+    @GetMapping("/user/{id}")
+    public UserDTO getOneUser(@PathVariable("id") int id){
+        return userService.getOneUser(id);
     }
 
-    @PostMapping("/devices")
-    public DeviceDTO saveDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.saveDevice(studentDTO);
+    @PostMapping("/user")
+    public UserDTO saveUser(@RequestBody UserDTO userDTO){
+        return userService.saveUser(userDTO);
     }
 
-    @PutMapping("/devices")
-    public DeviceDTO updateDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.updateDevice(studentDTO);
+    @PutMapping("/user")
+    public UserDTO updateUser(@RequestBody UserDTO userDTO){
+        return userService.updateUser(userDTO);
     }
 
-    @DeleteMapping("/devices")
-    public boolean deleteDevice(@RequestBody DeviceDTO studentDTO){
-        return deviceService.deleteDevice(studentDTO);
+    @DeleteMapping("/user")
+    public boolean deleteUser(@RequestBody UserDTO userDTO){
+        return userService.deleteUser(userDTO);
     }
 
 }
