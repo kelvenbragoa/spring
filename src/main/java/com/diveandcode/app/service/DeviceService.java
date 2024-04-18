@@ -20,10 +20,12 @@ public class DeviceService {
     @Autowired
     private DeviceRepository deviceRepository;
 
+
     @Autowired
     private ModelMapper modelMapper;
 
     public DeviceDTO saveDevice(DeviceDTO deviceDTO){
+
         deviceRepository.save(modelMapper.map(deviceDTO, Device.class));
         return deviceDTO;
     }
